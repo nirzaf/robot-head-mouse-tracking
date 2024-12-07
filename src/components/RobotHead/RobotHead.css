@@ -1,0 +1,156 @@
+.robot-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  perspective: 1000px;
+}
+
+.robot-head {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.95),
+    rgba(240, 240, 240, 0.85)
+  );
+  border-radius: 50%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(10deg);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 10px 20px rgba(0, 0, 0, 0.3),
+    inset -5px -5px 20px rgba(0, 0, 0, 0.2),
+    inset 5px 5px 20px rgba(255, 255, 255, 0.8);
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+}
+
+/* Enhanced metallic shine effect */
+.robot-head::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.4) 40%,
+    rgba(255, 255, 255, 0.8) 45%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 60%
+  );
+  transform: rotate(45deg);
+  animation: shine 4s infinite ease-in-out;
+  pointer-events: none;
+}
+
+/* Add depth ring */
+.robot-head::after {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.1),
+    transparent 70%
+  );
+  z-index: -1;
+  transform: translateZ(-10px);
+  filter: blur(5px);
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-200%) translateY(-200%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(200%) translateY(200%) rotate(45deg);
+  }
+}
+
+.eye-socket {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle at 30% 30%, #000000, #1a1a1a);
+  border-radius: 50%;
+  position: absolute;
+  top: 30%;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform: translateZ(10px);
+  box-shadow: 
+    0 0 20px rgba(0, 0, 0, 0.6),
+    inset 0 0 20px rgba(0, 0, 0, 0.9),
+    0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.eye-socket.left {
+  left: 20%;
+}
+
+.eye-socket.right {
+  right: 20%;
+}
+
+.eye {
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle at 30% 30%, #fff, #f0f0f0);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.05s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 
+    0 0 10px rgba(0, 0, 0, 0.3),
+    inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.pupil {
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 40% 40%, #00f0ff, #0099ff);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 
+    0 0 10px #00f0ff,
+    0 0 20px #00f0ff,
+    0 0 30px rgba(0, 240, 255, 0.5);
+}
+
+.glow {
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle at center, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 70%);
+  border-radius: 50%;
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  filter: blur(1px);
+  animation: glowPulse 2s infinite ease-in-out;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
